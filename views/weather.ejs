@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Weather Checker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-        <h2>Weather Info</h2>
 
-    <form action="/" method="post">
-        <input type="text" name="city" placeholder="Search City">
-        <center>
+<body>
+    <h2>Weather Info</h2>
+
+    <div class="container">
+        <form action="/" method="post">
+            <input type="text" name="city" placeholder="Search City">
             <button type="submit">Search</button>
-        </center>
-        
-    </form>
-    
-    <div class="card card-me">
-       <% if (locals.error) { %>
-            <p><%= error %></p>
-       <% } else {%>
-        <div class="card-header">
-            <% if (locals.cityName) { %>
-                <h3><%= cityName %></h3>
-            <% } %>
-           
+
+        </form>
+
+        <div class="card-me">
+            <% if (locals.error) { %>
+                <h3>
+                    <%= error %>
+                </h3>
+                <% } else {%>
+                    <div class="header">
+                        <% if (locals.cityName) { %>
+                            <h3>
+                                <%= cityName %>
+                            </h3>
+                            <% } %>
+
+                    </div>
+                    
+                        <% if (locals.imgUrl) { %>
+                            <img src="<%= imgUrl %>">
+                        <% } %>
+                        <% if (locals.temperature) { %>
+                            <h5>Temp: <br> <%= temperature %>°C</h5>
+                        <% } %>
+                        <% if (locals.description) { %>
+                            <p>Desc: <br><%= description %>
+                            </p>
+                        <% } %>
+                   
+                    <% } %>
         </div>
-        <div class="card-body">
-          <% if (locals.imgUrl) { %>
-            <img src="<%= imgUrl %>">
-          <% } %>
-            <% if (locals.temperature) { %>
-                <h5>Temp: <%= temperature %>°C</h5>
-            <% } %>
-            <% if (locals.description) { %>
-                <p>Desc: <%= description %></p>
-            <% } %>
-        </div>
-       <% } %>
+
     </div>
 
     <script src="weather.js"></script>
 </body>
+
 </html>
